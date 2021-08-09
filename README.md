@@ -1,2 +1,4 @@
 # Python
-Learning python from 0
+I'm learning python from 0
+
+Repository full in english
