@@ -9,7 +9,8 @@ def main():
      ch = str(input("Insert qrcode to scan a QR code or barcode to scan a Barcode: "))
 
      if 'qrcode' in ch:
-          qr = Image.open('C:/Users/Chope/Desktop/qrcode.jpg')
+          qrloc = str(input("Insert the QRCode Image location: "))
+          qr = Image.open(qrloc)
           output = pyzbar.decode(qr)
           data = output[0].data
           print(data)
