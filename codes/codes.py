@@ -13,10 +13,10 @@ window.geometry("300x300")
 window.resizable(0,0)
 
 def main():
-    json_file = open("C:\\Users\\Chope\\Desktop\\programacion\\Python\\codes\\items.json", "r")
+    json_file = open(".\items.json", "r")
     data = json.load(json_file)
     IMG = PIL.Image
-    filename = filedialog.askopenfilename(initialdir = "C:/Users/Desktop",title = "Select a File",filetypes = (("PNG Files","*.png*"),("all files","*.*")))
+    filename = filedialog.askopenfilename(initialdir = "./",title = "Select a File",filetypes = (("PNG Files","*.png*"),("all files","*.*")))
     imgtsc = PIL.Image.open(filename)
     output = pyzbar.decode(imgtsc)
     datastr = str(output[0].data, 'utf-8')
@@ -33,8 +33,9 @@ def main():
                itemlbl.pack()
                window.after(2000, itemlbl.destroy)
 
-qrcodeimg = PhotoImage(file="C:\\Users\\Chope\\Desktop\\frame2.png")
+qrcodeimg = PhotoImage(file=".\\images\\btn_image.png")
 button_explore = Button(window, image=qrcodeimg, command= main,bd=0, height=256, width=256,bg="white")
 button_explore.place(x=20,y=10)
 window.config(background="white")
+window.iconbitmap('.\images\ico.ico')
 window.mainloop()
