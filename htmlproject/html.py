@@ -8,7 +8,7 @@ def main():
  get_request_and_file()
  ask_user()
 
-
+ 
 def get_request_and_file():
  r = requests.get(main.url)
  if r.status_code == 200:
