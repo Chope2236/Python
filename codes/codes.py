@@ -8,7 +8,7 @@ import re
 from tkinter import *
 from tkinter import filedialog
 window = Tk()
-window.title('QRCode Scaner')
+window.title('Codes Scaner')
 window.geometry("300x300")
 
 def main():
@@ -19,8 +19,8 @@ def main():
     imgtsc = PIL.Image.open(filename)
     output = pyzbar.decode(imgtsc)
     datastr = str(output[0].data, 'utf-8')
-    if 'https://' in data:
-        URL = str(re.search("(?P<url>https?://[^\s]+)", data).group("url"))
+    if 'https://' in datastr:
+        URL = str(re.search("(?P<url>https?://[^\s]+)", datastr).group("url"))
         webbrowser.open(URL)
     else:
         for i in data:
