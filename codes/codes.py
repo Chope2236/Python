@@ -10,6 +10,7 @@ from tkinter import filedialog
 window = Tk()
 window.title('Codes Scaner')
 window.geometry("300x300")
+window.resizable(0,0)
 
 def main():
     json_file = open("C:\\Users\\Chope\\Desktop\\programacion\\Python\\codes\\items.json", "r")
@@ -27,12 +28,12 @@ def main():
            code = str(i['code'])
            name = i['name']
            if datastr in code:
-                itemlbl = Label(window, text=name, font=("Helvetica",12), background="red")
-                itemlbl.place(x=10,y=0)
+                itemlbl = Label(window, text=name, font=("Helvetica",8), background="red")  
+                itemlbl.place(x=10,y=235)
+                itemlbl.pack()
 
 qrcodeimg = PhotoImage(file="C:\\Users\\Chope\\Desktop\\frame2.png")
 button_explore = Button(window, image=qrcodeimg, command= main,bd=0, height=256, width=256,bg="white")
 button_explore.place(x=20,y=10)
-
 window.config(background="white")
 window.mainloop()
