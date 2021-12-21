@@ -28,9 +28,10 @@ def main():
            code = str(i['code'])
            name = i['name']
            if datastr in code:
-                itemlbl = Label(window, text=name, font=("Helvetica",8), background="red")  
-                itemlbl.place(x=10,y=235)
-                itemlbl.pack()
+               itemlbl = Label(window, text=name, font=("Helvetica",8), background="red")
+               itemlbl.place(x=10,y=235)
+               itemlbl.pack()
+               window.after(2000, itemlbl.destroy)
 
 qrcodeimg = PhotoImage(file="C:\\Users\\Chope\\Desktop\\frame2.png")
 button_explore = Button(window, image=qrcodeimg, command= main,bd=0, height=256, width=256,bg="white")
