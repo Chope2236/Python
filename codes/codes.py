@@ -7,6 +7,7 @@ import webbrowser
 import re
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 window = Tk()
 window.title('Codes Scaner')
 window.geometry("300x300")
@@ -32,6 +33,9 @@ def main():
                itemlbl.place(x=10,y=235)
                itemlbl.pack()
                window.after(2000, itemlbl.destroy)
+        else:
+                messagebox.showinfo(message=datastr, title="Text from QR")
+
 
 qrcodeimg = PhotoImage(file=".\\images\\btn_image.png")
 button_explore = Button(window, image=qrcodeimg, command= main,bd=0, height=256, width=256,bg="white")
