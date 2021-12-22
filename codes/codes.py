@@ -14,28 +14,32 @@ window.geometry("300x300")
 window.resizable(0,0)
 
 def main():
-    json_file = open(".\items.json", "r")
-    data = json.load(json_file)
-    IMG = PIL.Image
-    filename = filedialog.askopenfilename(initialdir = "./",title = "Select a File",filetypes = (("PNG Files","*.png*"),("all files","*.*")))
-    imgtsc = PIL.Image.open(filename)
-    output = pyzbar.decode(imgtsc)
-    datastr = str(output[0].data, 'utf-8')
-    if 'https://' in datastr:
-        URL = str(re.search("(?P<url>https?://[^\s]+)", datastr).group("url"))
+    json_item_file()
+    decoding()
+    #looks for URL
+    if 'https://' in decoding.datastr:
+        URL = str(re.search("(?P<url>https?://[^\s]+)", decoding.datastr).group("url"))
         webbrowser.open(URL)
     else:
-        for i in data:
+        #looks for item
+        for i in json_item_file.data:
            code = str(i['code'])
            name = i['name']
-           if datastr in code:
+           if decoding.datastr in code:
                itemlbl = Label(window, text=name, font=("Helvetica",8), background="red")
                itemlbl.place(x=10,y=235)
                itemlbl.pack()
-               window.after(2000, itemlbl.destroy)
-        else:
-                messagebox.showinfo(message=datastr, title="Text from QR")
+               window.after(3000, itemlbl.destroy)
 
+def json_item_file():
+    json_file = open(".\items.json", "r")
+    json_item_file.data = json.load(json_file)
+
+def decoding():
+    filename = filedialog.askopenfilename(initialdir = "./",title = "Select a File",filetypes = (("PNG Files","*.png*"),("all files","*.*")))
+    imgtsc = PIL.Image.open(filename)
+    output = pyzbar.decode(imgtsc)
+    decoding.datastr = str(output[0].data, 'utf-8')
 
 qrcodeimg = PhotoImage(file=".\\images\\btn_image.png")
 button_explore = Button(window, image=qrcodeimg, command= main,bd=0, height=256, width=256,bg="white")
