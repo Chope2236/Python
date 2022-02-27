@@ -23,7 +23,8 @@ def main():
         URL = str(re.search("(?P<url>https?://[^\s]+)", datastr))
     
     lookforitem(datastr)
-
+    email(datastr)
+    
 def decoding():
     filename = filedialog.askopenfilename(initialdir = "./",title = "Select a File",filetypes = (("PNG Files","*.png*"),("all files","*.*")))
     imgtsc = PIL.Image.open(filename)
@@ -43,6 +44,10 @@ def lookforitem(datastr):
                itemlbl.pack()
                window.after(3000, itemlbl.destroy)
                return 0
+
+def email(datastr):
+    emailadress = str(re.search(r'[\w.+-]+@[\w-]+\.[\w.-]+', datastr).group(0))
+    webbrowser.open("mailto:" + emailadress)
 
 qrcodeimg = PhotoImage(file=".\\images\\btn_image.png")
 button_explore = Button(window, image=qrcodeimg, command= main,bd=0, height=256, width=256,bg="white")
